@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Alteryx Codex Operating Model
 
 This workspace turns the plan into a practical starter kit for running Ben Canning's "new way of working" in Codex.
@@ -46,3 +47,6 @@ A full local implementation for the Meta-first, Claude-powered performance marke
 - Team handoff documentation: `docs/performance-marketing/00-TEAM-HANDOFF-INDEX.md`
 - Entry command: `python3 -m src.main`
 - Core modules: `src/ingestion`, `src/analytics`, `src/agents`, `src/orchestrator`, `src/reporting`, `src/notifications`, `ui`
+=======
+# AI-Campaign-Analysis-Recommendation-System-
+>>>>>>> 0e175a8c35baea4ec57909d74687ee56b3dfcec2
