@@ -1,0 +1,5 @@
+date_start,date_stop,impressions,clicks,spend,actions.purchase,action_values.purchase,ctr,cpc,cpm,campaign_id,campaign_name,adset_id,adset_name,ad_id,ad_name
+2026-04-14,2026-04-14,15000,220,165,5,760.0,1.46,0.82,12.0,cmp_1,Campaign 1,adset_1,Audience 1,ad_1,Creative 1
+2026-04-14,2026-04-14,15000,220,200,6,760.0,1.46,0.82,12.0,cmp_2,Campaign 2,adset_2,Audience 2,ad_2,Creative 2
+2026-04-14,2026-04-14,15000,220,235,7,760.0,1.46,0.82,12.0,cmp_3,Campaign 3,adset_3,Audience 3,ad_3,Creative 3
+2026-04-14,2026-04-14,15000,220,270,8,760.0,1.46,0.82,12.0,cmp_4,Campaign 4,adset_4,Audience 4,ad_4,Creative 4

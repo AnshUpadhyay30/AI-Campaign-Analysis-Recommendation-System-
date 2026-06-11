@@ -1,0 +1,19 @@
+agents:
+  - name: data_quality
+    stage: analysis
+    output_contract: AgentOutput
+  - name: performance_diagnostics
+    stage: analysis
+    output_contract: AgentOutput
+  - name: creative_intelligence
+    stage: analysis
+    output_contract: AgentOutput
+  - name: budget_allocator
+    stage: recommendation
+    output_contract: AgentOutput
+  - name: market_context
+    stage: context
+    output_contract: AgentOutput
+  - name: report_composer
+    stage: composition
+    output_contract: AgentOutput

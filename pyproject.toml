@@ -1,0 +1,18 @@
+[project]
+name = "local-performance-intelligence"
+version = "0.1.0"
+description = "Local Meta-first performance marketing intelligence system"
+requires-python = ">=3.11"
+dependencies = [
+  "python-dotenv>=1.0.1",
+  "requests>=2.32.3",
+  "PyYAML>=6.0.2",
+  "anthropic>=0.54.0",
+  "flask>=3.0.3",
+  "apscheduler>=3.10.4",
+  "twilio>=9.2.3",
+  "chromadb>=0.5.5"
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]

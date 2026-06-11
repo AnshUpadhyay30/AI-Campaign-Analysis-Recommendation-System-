@@ -1,0 +1,12 @@
+pipeline:
+  objective: balanced_funnel
+  budget_guardrail: target_cpa_cpl
+  weekly_schedule:
+    timezone: Asia/Kolkata
+    cron: "0 8 * * MON"
+  ingestion:
+    levels: [campaign, adset, ad]
+    breakdowns: publisher_platform,platform_position
+  approvals:
+    default_status: PROPOSED
+    allowed_status: [PROPOSED, APPROVED, DEFERRED, REJECTED]

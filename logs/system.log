@@ -1,0 +1,377 @@
+2026-04-14 12:11:06,812 INFO httpx HTTP Request: GET https://chroma-onnx-models.s3.amazonaws.com/all-MiniLM-L6-v2/onnx.tar.gz "HTTP/1.1 200 OK"
+2026-04-14 12:12:49,918 ERROR src.orchestrator.pipeline Weekly run failed
+Traceback (most recent call last):
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 127, in __iter__
+    for part in self._httpcore_stream:
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/httpcore/_sync/connection_pool.py", line 407, in __iter__
+    raise exc from None
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/httpcore/_sync/connection_pool.py", line 403, in __iter__
+    for part in self._stream:
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/httpcore/_sync/http11.py", line 342, in __iter__
+    raise exc
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/httpcore/_sync/http11.py", line 334, in __iter__
+    for chunk in self._connection._receive_response_body(**kwargs):
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/httpcore/_sync/http11.py", line 203, in _receive_response_body
+    event = self._receive_event(timeout=timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/httpcore/_sync/http11.py", line 217, in _receive_event
+    data = self._network_stream.read(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/httpcore/_backends/sync.py", line 126, in read
+    with map_exceptions(exc_map):
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 155, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ReadTimeout: The read operation timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/orchestrator/pipeline.py", line 220, in run_weekly
+    vector_store.add(
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/common/vector_store.py", line 29, in add
+    self._collection.add(ids=[doc_id], documents=[text], metadatas=[meta])
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/chromadb/api/models/Collection.py", line 107, in add
+    add_request = self._validate_and_prepare_add_request(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/chromadb/api/models/CollectionCommon.py", line 103, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/chromadb/api/models/CollectionCommon.py", line 241, in _validate_and_prepare_add_request
+    add_embeddings = self._embed_record_set(record_set=add_records)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/chromadb/api/models/CollectionCommon.py", line 736, in _embed_record_set
+    return self._embed(
+           ^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/chromadb/api/models/CollectionCommon.py", line 760, in _embed
+    return config_ef(input=input)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/chromadb/api/types.py", line 860, in __call__
+    result = call(self, input)
+             ^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/chromadb/api/types.py", line 960, in __call__
+    return ONNXMiniLM_L6_V2()(input)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/chromadb/api/types.py", line 860, in __call__
+    result = call(self, input)
+             ^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/chromadb/utils/embedding_functions/onnx_mini_lm_l6_v2.py", line 270, in __call__
+    self._download_model_if_not_exists()
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/chromadb/utils/embedding_functions/onnx_mini_lm_l6_v2.py", line 308, in _download_model_if_not_exists
+    self._download(
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/tenacity/__init__.py", line 331, in wrapped_f
+    return copy(f, *args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/tenacity/__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/tenacity/__init__.py", line 371, in iter
+    result = action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/tenacity/__init__.py", line 393, in <lambda>
+    self._add_action_func(lambda rs: rs.outcome.result())
+                                     ^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/tenacity/__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/chromadb/utils/embedding_functions/onnx_mini_lm_l6_v2.py", line 116, in _download
+    for data in resp.iter_bytes(chunk_size=chunk_size):
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/httpx/_models.py", line 897, in iter_bytes
+    for raw_bytes in self.iter_raw():
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/httpx/_models.py", line 951, in iter_raw
+    for raw_stream_bytes in self.stream:
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/httpx/_client.py", line 153, in __iter__
+    for chunk in self._stream:
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 126, in __iter__
+    with map_httpcore_exceptions():
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 155, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ReadTimeout: The read operation timed out in add.
+2026-04-14 12:15:55,950 INFO httpx HTTP Request: GET https://chroma-onnx-models.s3.amazonaws.com/all-MiniLM-L6-v2/onnx.tar.gz "HTTP/1.1 200 OK"
+2026-04-14 13:16:45,533 INFO apscheduler.scheduler Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-14 13:16:45,533 INFO src.orchestrator.scheduler Scheduler started for cron=0 8 * * MON timezone=Asia/Kolkata
+2026-04-14 13:16:45,534 INFO apscheduler.scheduler Added job "start_scheduler.<locals>.<lambda>" to job store "default"
+2026-04-14 13:16:45,534 INFO apscheduler.scheduler Scheduler started
+2026-04-14 13:17:58,620 INFO apscheduler.scheduler Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-14 13:17:58,620 INFO src.orchestrator.scheduler Scheduler started for cron=0 8 * * MON timezone=Asia/Kolkata
+2026-04-14 13:17:58,620 INFO apscheduler.scheduler Added job "start_scheduler.<locals>.<lambda>" to job store "default"
+2026-04-14 13:17:58,620 INFO apscheduler.scheduler Scheduler started
+2026-04-14 13:18:43,777 INFO apscheduler.scheduler Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-14 13:18:43,777 INFO src.orchestrator.scheduler Scheduler started for cron=0 8 * * * timezone=Asia/Kolkata
+2026-04-14 13:18:43,777 INFO apscheduler.scheduler Added job "start_scheduler.<locals>.<lambda>" to job store "default"
+2026-04-14 13:18:43,777 INFO apscheduler.scheduler Scheduler started
+2026-04-14 13:19:51,794 INFO httpx HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 404 Not Found"
+2026-04-14 13:19:51,796 ERROR src.orchestrator.pipeline Weekly run failed
+Traceback (most recent call last):
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/orchestrator/pipeline.py", line 253, in run_weekly
+    output = agent.run(context)
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/agents/report_composer.py", line 29, in run
+    payload = self.client.complete_json(SYSTEM_PROMPT, prompt)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/agents/claude_client.py", line 33, in complete_json
+    message = self._client.messages.create(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/anthropic/_utils/_utils.py", line 283, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/anthropic/resources/messages/messages.py", line 996, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/anthropic/_base_client.py", line 1368, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/anthropic/_base_client.py", line 1141, in request
+    raise self._make_status_error_from_response(err.response) from None
+anthropic.NotFoundError: Error code: 404 - {'type': 'error', 'error': {'type': 'not_found_error', 'message': 'model: claude-3-7-sonnet-latest'}, 'request_id': 'req_011Ca3JCb1hxEcwdEKxVRyxh'}
+2026-04-14 13:21:29,181 INFO httpx HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 404 Not Found"
+2026-04-14 13:21:29,183 ERROR src.orchestrator.pipeline Weekly run failed
+Traceback (most recent call last):
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/orchestrator/pipeline.py", line 253, in run_weekly
+    output = agent.run(context)
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/agents/report_composer.py", line 29, in run
+    payload = self.client.complete_json(SYSTEM_PROMPT, prompt)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/agents/claude_client.py", line 33, in complete_json
+    message = self._client.messages.create(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/anthropic/_utils/_utils.py", line 283, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/anthropic/resources/messages/messages.py", line 996, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/anthropic/_base_client.py", line 1368, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/anthropic/_base_client.py", line 1141, in request
+    raise self._make_status_error_from_response(err.response) from None
+anthropic.NotFoundError: Error code: 404 - {'type': 'error', 'error': {'type': 'not_found_error', 'message': 'model: claude-3-haiku-20240307'}, 'request_id': 'req_011Ca3JKmXux9U4xB5auPN8K'}
+2026-04-14 13:24:10,500 INFO httpx HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-04-14 13:24:10,524 WARNING src.agents.claude_client Claude returned non-JSON output; returning empty contract
+2026-04-14 13:30:28,786 INFO httpx HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-04-14 13:30:28,809 WARNING src.agents.claude_client Claude returned non-JSON output: {"findings":["Total weekly spend was $2,610 across 4 campaigns delivering 180,000 impressions, 2,640 clicks, and 78 conversions at a blended CPA of $33.46 and CVR of 2.95%.","All four campaigns received identical impression volume (45,000 each) and identical click volume (660 each), resulting in a uniform CTR of 1.47%. This uniformity suggests budget or delivery caps are constraining differentiated performance.","Campaign 4 is the highest spender ($810) with the highest CPC ($1.23) and highest C
+2026-04-14 13:33:58,703 INFO httpx HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-04-14 13:42:26,781 INFO httpx HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-04-14 13:49:06,729 INFO apscheduler.scheduler Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-14 13:49:06,729 INFO src.orchestrator.scheduler Scheduler started for cron=*/1 * * * * timezone=Asia/Kolkata
+2026-04-14 13:49:06,729 INFO apscheduler.scheduler Added job "start_scheduler.<locals>.<lambda>" to job store "default"
+2026-04-14 13:49:06,730 INFO apscheduler.scheduler Scheduler started
+2026-04-14 13:50:00,007 INFO apscheduler.executors.default Running job "start_scheduler.<locals>.<lambda> (trigger: cron[month='*', day='*', day_of_week='*', hour='*', minute='*/1'], next run at: 2026-04-14 13:50:00 IST)" (scheduled at 2026-04-14 13:50:00+05:30)
+2026-04-14 13:50:01,687 ERROR src.orchestrator.pipeline Weekly run failed
+Traceback (most recent call last):
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/orchestrator/pipeline.py", line 219, in run_weekly
+    rows = pull_insights(config)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/ingestion/meta.py", line 100, in pull_insights
+    raise RuntimeError(f"Meta API error {response.status_code}: {payload}")
+RuntimeError: Meta API error 400: {'error': {'message': "Unsupported get request. Object with ID 'act_' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api", 'type': 'GraphMethodException', 'code': 100, 'error_subcode': 33, 'fbtrace_id': 'AF1SV_RZSPAxCNuZkL97L6s'}}
+2026-04-14 13:50:01,694 ERROR apscheduler.executors.default Job "start_scheduler.<locals>.<lambda> (trigger: cron[month='*', day='*', day_of_week='*', hour='*', minute='*/1'], next run at: 2026-04-14 13:51:00 IST)" raised an exception
+Traceback (most recent call last):
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/apscheduler/executors/base.py", line 131, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/orchestrator/scheduler.py", line 52, in <lambda>
+    lambda: run_weekly(settings, rerun=False),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/orchestrator/pipeline.py", line 219, in run_weekly
+    rows = pull_insights(config)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/ingestion/meta.py", line 100, in pull_insights
+    raise RuntimeError(f"Meta API error {response.status_code}: {payload}")
+RuntimeError: Meta API error 400: {'error': {'message': "Unsupported get request. Object with ID 'act_' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api", 'type': 'GraphMethodException', 'code': 100, 'error_subcode': 33, 'fbtrace_id': 'AF1SV_RZSPAxCNuZkL97L6s'}}
+2026-04-14 13:51:00,005 INFO apscheduler.executors.default Running job "start_scheduler.<locals>.<lambda> (trigger: cron[month='*', day='*', day_of_week='*', hour='*', minute='*/1'], next run at: 2026-04-14 13:52:00 IST)" (scheduled at 2026-04-14 13:51:00+05:30)
+2026-04-14 13:51:00,365 ERROR src.orchestrator.pipeline Weekly run failed
+Traceback (most recent call last):
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/orchestrator/pipeline.py", line 219, in run_weekly
+    rows = pull_insights(config)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/ingestion/meta.py", line 100, in pull_insights
+    raise RuntimeError(f"Meta API error {response.status_code}: {payload}")
+RuntimeError: Meta API error 400: {'error': {'message': "Unsupported get request. Object with ID 'act_' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api", 'type': 'GraphMethodException', 'code': 100, 'error_subcode': 33, 'fbtrace_id': 'Ayy1_bCtRuK8ZJ6n4eYZtEO'}}
+2026-04-14 13:51:00,370 ERROR apscheduler.executors.default Job "start_scheduler.<locals>.<lambda> (trigger: cron[month='*', day='*', day_of_week='*', hour='*', minute='*/1'], next run at: 2026-04-14 13:52:00 IST)" raised an exception
+Traceback (most recent call last):
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/apscheduler/executors/base.py", line 131, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/orchestrator/scheduler.py", line 52, in <lambda>
+    lambda: run_weekly(settings, rerun=False),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/orchestrator/pipeline.py", line 219, in run_weekly
+    rows = pull_insights(config)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/ingestion/meta.py", line 100, in pull_insights
+    raise RuntimeError(f"Meta API error {response.status_code}: {payload}")
+RuntimeError: Meta API error 400: {'error': {'message': "Unsupported get request. Object with ID 'act_' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api", 'type': 'GraphMethodException', 'code': 100, 'error_subcode': 33, 'fbtrace_id': 'Ayy1_bCtRuK8ZJ6n4eYZtEO'}}
+2026-04-14 13:52:00,006 INFO apscheduler.executors.default Running job "start_scheduler.<locals>.<lambda> (trigger: cron[month='*', day='*', day_of_week='*', hour='*', minute='*/1'], next run at: 2026-04-14 13:53:00 IST)" (scheduled at 2026-04-14 13:52:00+05:30)
+2026-04-14 13:52:00,455 ERROR src.orchestrator.pipeline Weekly run failed
+Traceback (most recent call last):
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/orchestrator/pipeline.py", line 219, in run_weekly
+    rows = pull_insights(config)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/ingestion/meta.py", line 100, in pull_insights
+    raise RuntimeError(f"Meta API error {response.status_code}: {payload}")
+RuntimeError: Meta API error 400: {'error': {'message': "Unsupported get request. Object with ID 'act_' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api", 'type': 'GraphMethodException', 'code': 100, 'error_subcode': 33, 'fbtrace_id': 'AEUz6WUbafPfgw17mXdr7DY'}}
+2026-04-14 13:52:00,457 ERROR apscheduler.executors.default Job "start_scheduler.<locals>.<lambda> (trigger: cron[month='*', day='*', day_of_week='*', hour='*', minute='*/1'], next run at: 2026-04-14 13:53:00 IST)" raised an exception
+Traceback (most recent call last):
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/apscheduler/executors/base.py", line 131, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/orchestrator/scheduler.py", line 52, in <lambda>
+    lambda: run_weekly(settings, rerun=False),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/orchestrator/pipeline.py", line 219, in run_weekly
+    rows = pull_insights(config)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/ingestion/meta.py", line 100, in pull_insights
+    raise RuntimeError(f"Meta API error {response.status_code}: {payload}")
+RuntimeError: Meta API error 400: {'error': {'message': "Unsupported get request. Object with ID 'act_' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api", 'type': 'GraphMethodException', 'code': 100, 'error_subcode': 33, 'fbtrace_id': 'AEUz6WUbafPfgw17mXdr7DY'}}
+2026-04-14 13:53:00,002 INFO apscheduler.executors.default Running job "start_scheduler.<locals>.<lambda> (trigger: cron[month='*', day='*', day_of_week='*', hour='*', minute='*/1'], next run at: 2026-04-14 13:54:00 IST)" (scheduled at 2026-04-14 13:53:00+05:30)
+2026-04-14 13:53:00,378 ERROR src.orchestrator.pipeline Weekly run failed
+Traceback (most recent call last):
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/orchestrator/pipeline.py", line 219, in run_weekly
+    rows = pull_insights(config)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/ingestion/meta.py", line 100, in pull_insights
+    raise RuntimeError(f"Meta API error {response.status_code}: {payload}")
+RuntimeError: Meta API error 400: {'error': {'message': "Unsupported get request. Object with ID 'act_' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api", 'type': 'GraphMethodException', 'code': 100, 'error_subcode': 33, 'fbtrace_id': 'A4vOWPTJNhILtriU3pEE-D9'}}
+2026-04-14 13:53:00,381 ERROR apscheduler.executors.default Job "start_scheduler.<locals>.<lambda> (trigger: cron[month='*', day='*', day_of_week='*', hour='*', minute='*/1'], next run at: 2026-04-14 13:54:00 IST)" raised an exception
+Traceback (most recent call last):
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/apscheduler/executors/base.py", line 131, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/orchestrator/scheduler.py", line 52, in <lambda>
+    lambda: run_weekly(settings, rerun=False),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/orchestrator/pipeline.py", line 219, in run_weekly
+    rows = pull_insights(config)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/ingestion/meta.py", line 100, in pull_insights
+    raise RuntimeError(f"Meta API error {response.status_code}: {payload}")
+RuntimeError: Meta API error 400: {'error': {'message': "Unsupported get request. Object with ID 'act_' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api", 'type': 'GraphMethodException', 'code': 100, 'error_subcode': 33, 'fbtrace_id': 'A4vOWPTJNhILtriU3pEE-D9'}}
+2026-04-14 13:54:00,002 INFO apscheduler.executors.default Running job "start_scheduler.<locals>.<lambda> (trigger: cron[month='*', day='*', day_of_week='*', hour='*', minute='*/1'], next run at: 2026-04-14 13:55:00 IST)" (scheduled at 2026-04-14 13:54:00+05:30)
+2026-04-14 13:54:00,488 ERROR src.orchestrator.pipeline Weekly run failed
+Traceback (most recent call last):
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/orchestrator/pipeline.py", line 219, in run_weekly
+    rows = pull_insights(config)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/ingestion/meta.py", line 100, in pull_insights
+    raise RuntimeError(f"Meta API error {response.status_code}: {payload}")
+RuntimeError: Meta API error 400: {'error': {'message': "Unsupported get request. Object with ID 'act_' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api", 'type': 'GraphMethodException', 'code': 100, 'error_subcode': 33, 'fbtrace_id': 'A3fp5k0bJi2psEmq0S8JR7j'}}
+2026-04-14 13:54:00,493 ERROR apscheduler.executors.default Job "start_scheduler.<locals>.<lambda> (trigger: cron[month='*', day='*', day_of_week='*', hour='*', minute='*/1'], next run at: 2026-04-14 13:55:00 IST)" raised an exception
+Traceback (most recent call last):
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/apscheduler/executors/base.py", line 131, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/orchestrator/scheduler.py", line 52, in <lambda>
+    lambda: run_weekly(settings, rerun=False),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/orchestrator/pipeline.py", line 219, in run_weekly
+    rows = pull_insights(config)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/ingestion/meta.py", line 100, in pull_insights
+    raise RuntimeError(f"Meta API error {response.status_code}: {payload}")
+RuntimeError: Meta API error 400: {'error': {'message': "Unsupported get request. Object with ID 'act_' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api", 'type': 'GraphMethodException', 'code': 100, 'error_subcode': 33, 'fbtrace_id': 'A3fp5k0bJi2psEmq0S8JR7j'}}
+2026-04-14 13:55:00,005 INFO apscheduler.executors.default Running job "start_scheduler.<locals>.<lambda> (trigger: cron[month='*', day='*', day_of_week='*', hour='*', minute='*/1'], next run at: 2026-04-14 13:56:00 IST)" (scheduled at 2026-04-14 13:55:00+05:30)
+2026-04-14 13:55:00,365 ERROR src.orchestrator.pipeline Weekly run failed
+Traceback (most recent call last):
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/orchestrator/pipeline.py", line 219, in run_weekly
+    rows = pull_insights(config)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/ingestion/meta.py", line 100, in pull_insights
+    raise RuntimeError(f"Meta API error {response.status_code}: {payload}")
+RuntimeError: Meta API error 400: {'error': {'message': "Unsupported get request. Object with ID 'act_' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api", 'type': 'GraphMethodException', 'code': 100, 'error_subcode': 33, 'fbtrace_id': 'AaEIJqwx_iqhiFcYeBQq_En'}}
+2026-04-14 13:55:00,369 ERROR apscheduler.executors.default Job "start_scheduler.<locals>.<lambda> (trigger: cron[month='*', day='*', day_of_week='*', hour='*', minute='*/1'], next run at: 2026-04-14 13:56:00 IST)" raised an exception
+Traceback (most recent call last):
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/apscheduler/executors/base.py", line 131, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/orchestrator/scheduler.py", line 52, in <lambda>
+    lambda: run_weekly(settings, rerun=False),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/orchestrator/pipeline.py", line 219, in run_weekly
+    rows = pull_insights(config)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/ingestion/meta.py", line 100, in pull_insights
+    raise RuntimeError(f"Meta API error {response.status_code}: {payload}")
+RuntimeError: Meta API error 400: {'error': {'message': "Unsupported get request. Object with ID 'act_' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api", 'type': 'GraphMethodException', 'code': 100, 'error_subcode': 33, 'fbtrace_id': 'AaEIJqwx_iqhiFcYeBQq_En'}}
+2026-04-14 13:56:00,005 INFO apscheduler.executors.default Running job "start_scheduler.<locals>.<lambda> (trigger: cron[month='*', day='*', day_of_week='*', hour='*', minute='*/1'], next run at: 2026-04-14 13:57:00 IST)" (scheduled at 2026-04-14 13:56:00+05:30)
+2026-04-14 13:56:00,352 ERROR src.orchestrator.pipeline Weekly run failed
+Traceback (most recent call last):
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/orchestrator/pipeline.py", line 219, in run_weekly
+    rows = pull_insights(config)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/ingestion/meta.py", line 100, in pull_insights
+    raise RuntimeError(f"Meta API error {response.status_code}: {payload}")
+RuntimeError: Meta API error 400: {'error': {'message': "Unsupported get request. Object with ID 'act_' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api", 'type': 'GraphMethodException', 'code': 100, 'error_subcode': 33, 'fbtrace_id': 'A11HPZ9fCyoD5FlJL_Y3NpB'}}
+2026-04-14 13:56:00,355 ERROR apscheduler.executors.default Job "start_scheduler.<locals>.<lambda> (trigger: cron[month='*', day='*', day_of_week='*', hour='*', minute='*/1'], next run at: 2026-04-14 13:57:00 IST)" raised an exception
+Traceback (most recent call last):
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/.venv/lib/python3.11/site-packages/apscheduler/executors/base.py", line 131, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/orchestrator/scheduler.py", line 52, in <lambda>
+    lambda: run_weekly(settings, rerun=False),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/orchestrator/pipeline.py", line 219, in run_weekly
+    rows = pull_insights(config)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/ingestion/meta.py", line 100, in pull_insights
+    raise RuntimeError(f"Meta API error {response.status_code}: {payload}")
+RuntimeError: Meta API error 400: {'error': {'message': "Unsupported get request. Object with ID 'act_' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api", 'type': 'GraphMethodException', 'code': 100, 'error_subcode': 33, 'fbtrace_id': 'A11HPZ9fCyoD5FlJL_Y3NpB'}}
+2026-04-14 13:56:36,302 INFO apscheduler.scheduler Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-14 13:56:36,302 INFO src.orchestrator.scheduler Scheduler started for cron=0 10 * * * timezone=Asia/Kolkata
+2026-04-14 13:56:36,303 INFO apscheduler.scheduler Added job "start_scheduler.<locals>.<lambda>" to job store "default"
+2026-04-14 13:56:36,303 INFO apscheduler.scheduler Scheduler started
+2026-04-14 17:58:34,751 INFO httpx HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-04-14 17:58:34,773 WARNING src.agents.claude_client Claude returned non-JSON output: {"findings":["Total weekly spend was $2,610 across 4 campaigns delivering 180,000 impressions, 2,640 clicks, and 78 conversions at an overall CPA of $33.46 and CVR of 2.95%.","All four campaigns received identical impression volume (45,000 each) and identical click volume (660 each), resulting in a uniform CTR of 1.47% — suggesting budget or delivery caps are equalizing distribution rather than performance-based allocation.","Campaign 4 is the highest spender at $810 with the highest CPC ($1.23)
+2026-04-14 17:59:24,388 ERROR src.orchestrator.pipeline Weekly run failed
+Traceback (most recent call last):
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/orchestrator/pipeline.py", line 219, in run_weekly
+    rows = pull_insights(config)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/ingestion/meta.py", line 100, in pull_insights
+    raise RuntimeError(f"Meta API error {response.status_code}: {payload}")
+RuntimeError: Meta API error 400: {'error': {'message': "Unsupported get request. Object with ID 'act_' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api", 'type': 'GraphMethodException', 'code': 100, 'error_subcode': 33, 'fbtrace_id': 'Aau0SkHDZSDJSZgAgxSxgua'}}
+2026-04-14 18:01:43,479 INFO httpx HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-04-14 18:01:43,512 WARNING src.agents.claude_client Claude returned non-JSON output: {"findings":["All four campaigns share identical impressions (45,000), clicks (660), and CTR (1.47%), suggesting uniform traffic distribution with no differentiation in audience reach or engagement efficiency.","Campaign 4 is the highest spender at $810 with the highest CPC ($1.23) and CPM ($18.00), yet delivers the most conversions (24) and highest CVR (3.64%), indicating stronger conversion quality despite elevated costs.","Campaign 1 is the most cost-efficient with the lowest CPC ($0.75), CPM
+2026-04-14 18:04:01,960 INFO httpx HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-04-15 15:13:08,721 ERROR src.orchestrator.pipeline Weekly run failed
+Traceback (most recent call last):
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/orchestrator/pipeline.py", line 219, in run_weekly
+    rows = pull_insights(config)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/ingestion/meta.py", line 100, in pull_insights
+    raise RuntimeError(f"Meta API error {response.status_code}: {payload}")
+RuntimeError: Meta API error 400: {'error': {'message': "Unsupported get request. Object with ID 'act_' does not exist, cannot be loaded due to missing permissions, or does not support this operation. Please read the Graph API documentation at https://developers.facebook.com/docs/graph-api", 'type': 'GraphMethodException', 'code': 100, 'error_subcode': 33, 'fbtrace_id': 'A9s8-DefoOj8DpDeu4tiDAX'}}
+2026-04-15 15:14:46,624 INFO httpx HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-04-20 17:26:55,572 ERROR src.orchestrator.pipeline Weekly run failed
+Traceback (most recent call last):
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/orchestrator/pipeline.py", line 219, in run_weekly
+    rows = pull_insights(config)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anshupadhyay/perf_marketing_full_handoff_20260413_210554/src/ingestion/meta.py", line 100, in pull_insights
+    raise RuntimeError(f"Meta API error {response.status_code}: {payload}")
+RuntimeError: Meta API error 400: {'error': {'message': '(#100) landing_page_views is not valid for fields param. please check https://developers.facebook.com/docs/marketing-api/reference/ads-insights/ for all valid values', 'type': 'OAuthException', 'code': 100, 'fbtrace_id': 'AgJJesLiTn1yEAFxuCeY5X4'}}
+2026-04-20 17:29:57,249 INFO src.ingestion.meta Pulled 142 rows for level=campaign
+2026-04-20 17:30:06,617 INFO src.ingestion.meta Pulled 239 rows for level=adset
+2026-04-20 17:30:47,581 INFO src.ingestion.meta Pulled 465 rows for level=ad
+2026-04-20 17:31:30,335 INFO httpx HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-04-20 19:09:00,623 INFO src.ingestion.meta Pulled 142 rows for level=campaign
+2026-04-20 19:09:05,128 INFO src.ingestion.meta Pulled 239 rows for level=adset
+2026-04-20 19:09:11,900 INFO src.ingestion.meta Pulled 465 rows for level=ad
+2026-04-20 19:10:09,440 INFO httpx HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-04-20 20:45:00,055 INFO src.ingestion.meta Pulled 142 rows for level=campaign
+2026-04-20 20:45:04,168 INFO src.ingestion.meta Pulled 239 rows for level=adset
+2026-04-20 20:45:08,984 INFO src.ingestion.meta Pulled 465 rows for level=ad
+2026-04-20 20:45:53,145 INFO httpx HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
